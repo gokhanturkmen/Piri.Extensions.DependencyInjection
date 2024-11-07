@@ -2,12 +2,8 @@ name: Publish NuGet Package
 
 on:
   push:
-    branches:
-      - main
-
-  # Optionally, you can add a trigger for creating a new release:
-  # release:
-  #   types: [published]
+    tags:
+      - 'v*'  # Triggers the workflow only on tags starting with "v", e.g., "v1.0.1"
 
 jobs:
   publish:
@@ -22,6 +18,10 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Extract version from tag
+        run: echo "##[set-output name=VERSION;]${GITHUB_REF/refs\/tags\/v/}"
+        id: extract_version
+
       - name: Restore dependencies
         run: dotnet restore src/Piri/Piri.sln
 
@@ -29,7 +29,7 @@ jobs:
         run: dotnet build src/Piri/Piri.sln --configuration Release --no-restore
 
       - name: Pack the NuGet package
-        run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg
+        run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg /p:Version=${{ steps.extract_version.outputs.VERSION }}
 
       - name: Publish to NuGet.org
         env:
