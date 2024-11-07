@@ -23,13 +23,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore src/Piri.sln
 
       - name: Build the project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build src/Piri.sln --configuration Release --no-restore
 
       - name: Pack the NuGet package
-        run: dotnet pack --configuration Release --no-restore --output ./nupkg
+        run: dotnet pack src/Piri.sln --configuration Release --no-restore --output ./nupkg
 
       - name: Publish to NuGet.org
         env:
