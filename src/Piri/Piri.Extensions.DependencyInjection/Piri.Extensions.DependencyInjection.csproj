@@ -4,6 +4,16 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Piri Dependency Injection Extensions</Title>
+		<Authors>Gökhan Türkmen</Authors>
+		<Product>Piri.Extensions.DependencyInjection</Product>
+		<Description>Piri Dependency Injection Extensions</Description>
+		<Copyright>https://github.com/gokhanturkmen/Piri.Extensions.DependencyInjection/blob/main/LICENSE</Copyright>
+		<PackageProjectUrl>https://github.com/gokhanturkmen/Piri.Extensions.DependencyInjection</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/gokhanturkmen/Piri.Extensions.DependencyInjection</RepositoryUrl>
+		<PackageId>Piri.Extensions.DependencyInjection</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
