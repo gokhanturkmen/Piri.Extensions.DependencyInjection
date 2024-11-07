@@ -20,6 +20,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
 		<PackageReference Include="Piri" Version="1.0.0" />
 		<None Update="..\..\..\README.md" Pack="true" PackagePath="README.md" />
+		<None Update="..\..\..\LICENSE" Pack="true" PackagePath="LICENSE" />
 	</ItemGroup>
 
 </Project>
