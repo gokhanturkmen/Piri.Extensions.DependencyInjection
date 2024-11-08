@@ -1,37 +1,37 @@
-name: Publish NuGet Package
+# name: Publish NuGet Package
 
-on:
-  push:
-    tags:
-      - 'v*'  # Triggers the workflow only on tags starting with "v", e.g., "v1.0.1"
+# on:
+#   push:
+#     tags:
+#       - 'v*'  # Triggers the workflow only on tags starting with "v", e.g., "v1.0.1"
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out the code
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Check out the code
+#         uses: actions/checkout@v2
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.x'
+#       - name: Set up .NET
+#         uses: actions/setup-dotnet@v3
+#         with:
+#           dotnet-version: '8.x'
 
-      - name: Extract version from tag
-        run: echo "##[set-output name=VERSION;]${GITHUB_REF/refs\/tags\/v/}"
-        id: extract_version
+#       - name: Extract version from tag
+#         run: echo "##[set-output name=VERSION;]${GITHUB_REF/refs\/tags\/v/}"
+#         id: extract_version
 
-      - name: Restore dependencies
-        run: dotnet restore src/Piri/Piri.sln
+#       - name: Restore dependencies
+#         run: dotnet restore src/Piri/Piri.sln
 
-      - name: Build the project
-        run: dotnet build src/Piri/Piri.sln --configuration Release --no-restore
+#       - name: Build the project
+#         run: dotnet build src/Piri/Piri.sln --configuration Release --no-restore
 
-      - name: Pack the NuGet package
-        run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg /p:Version=${{ steps.extract_version.outputs.VERSION }}
+#       - name: Pack the NuGet package
+#         run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg /p:Version=${{ steps.extract_version.outputs.VERSION }}
 
-      - name: Publish to NuGet.org
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push "./nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
+#       - name: Publish to NuGet.org
+#         env:
+#           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+#         run: dotnet nuget push "./nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
