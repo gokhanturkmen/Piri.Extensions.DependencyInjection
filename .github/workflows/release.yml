@@ -74,7 +74,7 @@ jobs:
         run: dotnet build src/Piri/Piri.sln --configuration Release --no-restore
 
       - name: Pack the NuGet package
-        run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg /p:Version=v${{ env.new_version }}
+        run: dotnet pack src/Piri/Piri.sln --configuration Release --no-restore --output ./nupkg /p:Version=${{ env.new_version }}
 
       - name: Publish to NuGet.org
         env:
