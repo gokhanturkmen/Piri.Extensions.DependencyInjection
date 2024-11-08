@@ -39,7 +39,7 @@ jobs:
           
           # Increment the patch version
           new_patch=$((patch + 1))
-          new_version="v${major}.${minor}.${new_patch}"
+          new_version="${major}.${minor}.${new_patch}"
           
           # Set the new version as an output
           echo "new_version=$new_version" >> $GITHUB_ENV
@@ -59,7 +59,7 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add $(find . -name '*.csproj')
           git commit -m "Bump version to ${{ env.new_version }}"
-          git tag -f ${{ env.new_version }}
+          git tag -f v${{ env.new_version }}
           git push -f origin release --tags
 
 
