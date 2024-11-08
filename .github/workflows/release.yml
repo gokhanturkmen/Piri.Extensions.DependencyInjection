@@ -59,8 +59,8 @@ jobs:
           git config --local user.email "github-actions@github.com"
           git add $(find . -name '*.csproj')
           git commit -m "Bump version to ${{ env.new_version }}"
-          git tag ${{ env.new_version }}
-          git push https://x-access-token:${PAT_TOKEN}@github.com/gokhanturkmen/Piri.Extensions.DependencyInjection.git release --tags
+          git tag -f ${{ env.new_version }}
+          git push -f origin release --tags
 
 
       - name: Pack the NuGet package
