@@ -19,9 +19,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-		<PackageReference Include="Piri" Version="1.0.0" />
-		<None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
-		<None Include="..\..\..\LICENSE" Pack="true" PackagePath="\"/>
+		<PackageReference Include="Piri" Version="1.0.1" />
+		<None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\..\..\LICENSE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
