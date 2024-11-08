@@ -12,7 +12,7 @@ Piri.Extensions.DependencyInjection is a .NET library that provides extensions f
 You can install the package via NuGet Package Manager or the .NET CLI.
 
 ### NuGet Package Manager
-```bash
+```powershell
 Install-Package Piri.Extensions.DependencyInjection
 ```
 ### .NET CLI
