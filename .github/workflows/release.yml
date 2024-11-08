@@ -52,20 +52,24 @@ jobs:
           cat $csproj_file
 
       - name: Commit new version and push
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
-          git commit -am "Bump version to ${{ env.new_version }}"
+          git add $(find . -name '*.csproj')
+          git commit -m "Bump version to ${{ env.new_version }}"
           git tag ${{ env.new_version }}
-          git push origin release --tags
+          git push https://x-access-token:${PAT_TOKEN}@github.com/gokhanturkmen/Piri.Extensions.DependencyInjection.git release --tags
+
 
       - name: Pack the NuGet package
         run: dotnet pack --configuration Release --no-restore --output ./nupkg
 
-    #   - name: Publish to NuGet.org
-    #     env:
-    #       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-    #     run: dotnet nuget push "./nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
+      - name: Publish to NuGet.org
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push "./nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY --skip-duplicate
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
